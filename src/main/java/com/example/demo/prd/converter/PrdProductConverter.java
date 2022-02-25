@@ -28,6 +28,7 @@ public class PrdProductConverter {
         PrdProductDto prdProductDto = new PrdProductDto();
         prdProductDto.setId(prdProduct.getId());
         prdProductDto.setName(prdProduct.getName());
+        prdProductDto.setPrice(prdProduct.getPrice());
         return prdProductDto;
 
     }

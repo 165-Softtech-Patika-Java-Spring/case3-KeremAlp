@@ -3,16 +3,16 @@ package com.example.demo.cmt.controller;
 import com.example.demo.cmt.dto.CmtCommentDto;
 import com.example.demo.cmt.dto.CmtCustomerCommentsDto;
 import com.example.demo.cmt.dto.CmtProductsCommentDto;
+import com.example.demo.cmt.dto.CmtSaveRequestDto;
 import com.example.demo.cmt.entity.CmtComment;
 import com.example.demo.cmt.service.CmtCommentService;
+import com.example.demo.cus.dto.CusCustomerDeleteRequestDto;
 import com.example.demo.cus.dto.CusCustomerDto;
+import com.example.demo.cus.dto.CusCustomerSaveRequestDto;
 import com.example.demo.gen.dto.RestResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,4 +36,21 @@ public class CmtCommentController {
 
         return ResponseEntity.ok(RestResponse.of(cmtCustomerCommentsDtoList));
     }
+
+    @PostMapping
+    public ResponseEntity save(@RequestBody CmtSaveRequestDto cmtSaveRequestDto){
+
+        CmtCommentDto cmtCommentDto = cmtCommentService.save(cmtSaveRequestDto);
+
+        return ResponseEntity.ok(RestResponse.of(cmtCommentDto));
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity delete(@PathVariable Long id){
+
+        cmtCommentService.delete(id);
+
+        return ResponseEntity.ok(RestResponse.empty());
+    }
+
+
 }

@@ -1,5 +1,7 @@
 package com.example.demo.prd.service;
 
+import com.example.demo.cmt.dto.CmtCommentDto;
+import com.example.demo.cmt.entity.CmtComment;
 import com.example.demo.cus.converter.CusCustomerMapper;
 import com.example.demo.cus.dto.CusCustomerDto;
 import com.example.demo.cus.dto.CusCustomerSaveRequestDto;
@@ -56,19 +58,20 @@ public class PrdProductService {
 
         PrdProduct prdProduct = prdProductEntityService.getByIdWithControl(id);
 
-        return PrdProductMapper.INSTANCE.convertToPrdProductDto(prdProduct);
+        PrdProductDto prdProductDto = PrdProductMapper.INSTANCE.convertToPrdProductDto(prdProduct);
+
+        return prdProductDto;
     }
 
     public PrdProductDto update(PrdProductUpdate prdProductUpdate) {
 
 
-        PrdProduct prdProduct;
-        prdProduct = PrdProductMapper.INSTANCE.convertToPrdProduct(prdProductUpdate);
-        prdProductEntityService.save(prdProduct);
+        PrdProductDto prdProduct;
+        prdProduct = findById(prdProductUpdate.getId());
+        prdProduct.setPrice(prdProductUpdate.getPrice());
+        prdProductEntityService.save(PrdProductMapper.INSTANCE.convertToPrdProduct(prdProduct));
 
-        PrdProductDto prdProductDto = PrdProductMapper.INSTANCE.convertToPrdProductDto(prdProduct);
-
-        return prdProductDto;
+        return prdProduct;
     }
 
 

@@ -3,6 +3,7 @@ package com.example.demo.cmt.service;
 import com.example.demo.cmt.dao.CmtCommentDao;
 import com.example.demo.cmt.dto.CmtCommentDto;
 import com.example.demo.cmt.dto.CmtCustomerCommentsDto;
+import com.example.demo.cmt.dto.CmtSaveRequestDto;
 import com.example.demo.cmt.entity.CmtComment;
 import com.example.demo.cus.dao.CusCustomerDao;
 import com.example.demo.cus.entity.CusCustomer;
@@ -22,6 +23,8 @@ public class CmtCommentEntityService extends BaseEntityService<CmtComment, CmtCo
     public  List<CmtComment> findAllByProductId(Long id){
         return getDao().findByPrdProductId(id);
     }
+
+
 }
 
 

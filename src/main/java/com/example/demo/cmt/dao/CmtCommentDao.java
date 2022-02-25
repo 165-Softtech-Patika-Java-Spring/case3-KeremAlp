@@ -16,4 +16,5 @@ public interface CmtCommentDao  extends JpaRepository<CmtComment,Long> {
     List<CmtComment> findByCusCustomerId(Long id);
     List<CmtComment> findByPrdProductId(Long id);
 
+
 }

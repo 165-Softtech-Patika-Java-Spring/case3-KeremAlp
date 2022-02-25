@@ -2,6 +2,7 @@ package com.example.demo.prd.service.entityservice;
 
 import com.example.demo.gen.service.BaseEntityService;
 import com.example.demo.prd.dao.PrdProductDao;
+import com.example.demo.prd.dto.PrdProductDto;
 import com.example.demo.prd.entity.PrdProduct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,11 +30,7 @@ public class PrdProductEntityService extends BaseEntityService<PrdProduct, PrdPr
            getDao().delete(getDao().findById(id).get());
       else throw new RuntimeException("Product does not exist");
     }
-    public PrdProduct save(PrdProduct prdProduct){
-      return getDao().save(prdProduct);
 
-
-    }
 
     public  void updatePrice(Long id,String newPrice){
         if (getDao().findById(id).isPresent())

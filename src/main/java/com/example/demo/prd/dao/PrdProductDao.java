@@ -1,5 +1,6 @@
 package com.example.demo.prd.dao;
 
+import com.example.demo.prd.dto.PrdProductDto;
 import com.example.demo.prd.entity.PrdProduct;
 import org.springframework.data.jpa.repository.JpaRepository;
 

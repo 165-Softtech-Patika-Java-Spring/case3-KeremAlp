@@ -20,7 +20,7 @@ public interface PrdProductMapper {
     PrdProduct convertToPrdProduct(PrdProductSaveRequestDto prdProductSaveRequestDto);
 
     PrdProduct convertToPrdProduct(PrdProductUpdate prdProductUpdate);
-
+    PrdProduct convertToPrdProduct(PrdProductDto prdProductDto);
     PrdProductDto convertToPrdProductDto(PrdProduct prdProduct);
 
 
