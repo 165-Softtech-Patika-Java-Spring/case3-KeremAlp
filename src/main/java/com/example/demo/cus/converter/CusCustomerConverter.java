@@ -33,6 +33,7 @@ public class CusCustomerConverter {
         cusCustomerDto.setEmail(cusCustomer.getEmail());
         cusCustomerDto.setPhone(cusCustomer.getPhone());
         cusCustomerDto.setIdentityNo(cusCustomer.getIdentityNo());
+        cusCustomerDto.setStatusType(cusCustomer.getStatusType());
         return cusCustomerDto;
     }
 }

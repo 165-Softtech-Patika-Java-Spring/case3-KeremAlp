@@ -2,6 +2,7 @@ package com.example.demo.cus.entity;
 
 
 import com.example.demo.gen.entity.BaseEntity;
+import com.example.demo.gen.enums.GenStatusType;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -21,4 +22,7 @@ public class CusCustomer extends BaseEntity {
     private String password;
     private String email;
     private String phone;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "STATUS_TYPE", length = 30)
+    private GenStatusType statusType;
 }
