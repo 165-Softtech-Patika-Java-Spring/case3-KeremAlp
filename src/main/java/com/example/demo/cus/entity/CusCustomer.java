@@ -1,8 +1,8 @@
 package com.example.demo.cus.entity;
 
 
+import com.example.demo.cus.enums.GenUserType;
 import com.example.demo.gen.entity.BaseEntity;
-import com.example.demo.gen.enums.GenUserType;
 import lombok.Data;
 
 import javax.persistence.*;

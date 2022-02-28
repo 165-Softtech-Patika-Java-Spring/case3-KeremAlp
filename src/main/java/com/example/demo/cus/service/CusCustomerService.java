@@ -54,7 +54,7 @@ public class CusCustomerService {
 
         CusCustomer cusCustomer = CusCustomerMapper.INSTANCE.convertToCusCustomer(cusCustomerDeleteRequestDto);
 
-        if (cusCustomer!=null)
+        if (cusCustomerEntityService.findByNameAndPhone(cusCustomer.getName(),cusCustomer.getPhone())!=null)
         cusCustomerEntityService.delete(cusCustomerEntityService.findByNameAndPhone(cusCustomer.getName(),cusCustomer.getPhone()));
         else{
             controlIsCustomerPhoneAndNumberMatch(cusCustomerDeleteRequestDto);
@@ -90,7 +90,7 @@ public class CusCustomerService {
         cusCustomer = CusCustomerMapper.INSTANCE.convertToCusCustomer(cusCustomerUpdateRequestDto);
         cusCustomerEntityService.save(cusCustomer);
 
-        CusCustomerDto cusCustomerDto = CusCustomerMapper.INSTANCE.convertToCusCustomerDto(cusCustomer);
+        CusCustomerDto cusCustomerDto = cusCustomerConverter.convertToCusCustomerDto(cusCustomer);
 
         return cusCustomerDto;
     }

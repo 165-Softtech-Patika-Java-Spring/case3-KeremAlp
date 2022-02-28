@@ -1,6 +1,6 @@
 package com.example.demo.cus.dto;
 
-import com.example.demo.gen.enums.GenUserType;
+import com.example.demo.cus.enums.GenUserType;
 import lombok.Data;
 
 

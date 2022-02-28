@@ -21,14 +21,14 @@ public class CmtComment extends BaseEntity {
 
     @Column(name = "customer_id", nullable=false)
     private Long customer_id;
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST,optional = false)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,optional = false)
     @JoinColumn(name = "customer_id", insertable=false, updatable=false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private CusCustomer cusCustomer;
 
     @Column(name = "product_id", nullable=false)
     private Long product_id;
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST,optional = false)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,optional = false)
     @JoinColumn(name = "product_id", insertable=false, updatable=false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private PrdProduct prdProduct;
