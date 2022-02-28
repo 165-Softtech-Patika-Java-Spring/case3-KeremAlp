@@ -2,7 +2,6 @@ package com.example.demo.cus.service;
 
 
 
-import com.example.demo.cus.dao.CusCustomerDao;
 import com.example.demo.cus.dto.CusCustomerDeleteRequestDto;
 import com.example.demo.cus.dto.CusCustomerDto;
 import com.example.demo.cus.dto.CusCustomerSaveRequestDto;
@@ -38,7 +37,10 @@ public class CusCustomerService {
     public CusCustomerDto save(CusCustomerSaveRequestDto cusCustomerSaveRequestDto) {
 
         CusCustomer cusCustomer = CusCustomerMapper.INSTANCE.convertToCusCustomer(cusCustomerSaveRequestDto);
-
+        if(cusCustomerEntityService.findByNameOrPhoneOrEmail(cusCustomerSaveRequestDto.getName(),cusCustomerSaveRequestDto.getPhone(),cusCustomerSaveRequestDto.getEmail())!=null){
+            throw new RuntimeException("Customer does exist!!! you can't register");
+        }
+        else
         cusCustomer = cusCustomerEntityService.save(cusCustomer);
 
         CusCustomerDto cusCustomerDto = CusCustomerMapper.INSTANCE.convertToCusCustomerDto(cusCustomer);
@@ -54,7 +56,9 @@ public class CusCustomerService {
 
         if (cusCustomer!=null)
         cusCustomerEntityService.delete(cusCustomerEntityService.findByNameAndPhone(cusCustomer.getName(),cusCustomer.getPhone()));
-        else throw new RuntimeException("Customer not exist");
+        else{
+            controlIsCustomerPhoneAndNumberMatch(cusCustomerDeleteRequestDto);
+        }
     }
 
 
@@ -99,4 +103,16 @@ public class CusCustomerService {
             throw new ItemNotFoundException(CusErrorMessage.CUSTOMER_ERROR_MESSAGE);
         }
     }
+
+
+    private void controlIsCustomerPhoneAndNumberMatch(CusCustomerDeleteRequestDto cusCustomerDeleteRequestDto) {
+
+        String name = cusCustomerDeleteRequestDto.getName();
+        String phone = cusCustomerDeleteRequestDto.getPhone();
+        CusCustomer isExist = cusCustomerEntityService.findByNameAndPhone(name,phone);
+        if (isExist==null){
+            throw new IllegalStateException(phone+" this phone number not match with "+name);
+        }
+    }
+
 }

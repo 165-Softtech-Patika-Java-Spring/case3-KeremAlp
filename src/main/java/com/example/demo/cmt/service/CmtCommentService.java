@@ -12,10 +12,13 @@ import com.example.demo.cus.converter.CusCustomerMapper;
 import com.example.demo.cus.dto.CusCustomerDeleteRequestDto;
 import com.example.demo.cus.dto.CusCustomerDto;
 import com.example.demo.cus.entity.CusCustomer;
+import com.example.demo.cus.service.entityservice.CusCustomerEntityService;
+import com.example.demo.gen.exceptions.ItemNotFoundException;
 import com.example.demo.prd.converter.PrdProductMapper;
 import com.example.demo.prd.dto.PrdProductDto;
 import com.example.demo.prd.dto.PrdProductSaveRequestDto;
 import com.example.demo.prd.entity.PrdProduct;
+import com.example.demo.prd.service.entityservice.PrdProductEntityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,12 +30,16 @@ public class CmtCommentService {
     private final CmtCommentEntityService cmtCommentEntityService;
     private final CmtCommentConverter cmtCommentConverter;
 
+
    public List<CmtCustomerCommentsDto> findCustomerComments(Long id){
 
        List<CmtComment> cmtCommentList =cmtCommentEntityService.findAllByCustomerId(id);
 
        List<CmtCustomerCommentsDto> cmtCommentDtoList = cmtCommentConverter.convertToCmtCustomerCommentsDtoList(cmtCommentList);
-
+       if (cmtCommentDtoList.isEmpty()){
+           String name=cmtCommentEntityService.findById(id).get().getCusCustomer().getName();
+           throw new IllegalStateException(name+" has no comments yet");
+       }
        return cmtCommentDtoList;
    }
 
@@ -42,7 +49,10 @@ public class CmtCommentService {
         List<CmtComment> cmtCommentList =cmtCommentEntityService.findAllByProductId(id);
 
         List<CmtProductsCommentDto> cmtCommentDtoList = cmtCommentConverter.convertToCmtProductsCommentDtoList(cmtCommentList);
-
+        if (cmtCommentDtoList.isEmpty()){
+            String name=cmtCommentEntityService.findById(id).get().getPrdProduct().getName();
+            throw new IllegalStateException(name+" does not exist!!!");
+        }
         return cmtCommentDtoList;
     }
 

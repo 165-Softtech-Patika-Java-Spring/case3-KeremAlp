@@ -75,9 +75,6 @@ public abstract class BaseEntityService<E extends BaseEntity, D extends JpaRepos
     }
 
 
-
-
-
     public boolean existsById(Long id){
         return dao.existsById(id);
     }
@@ -86,7 +83,6 @@ public abstract class BaseEntityService<E extends BaseEntity, D extends JpaRepos
         return dao;
     }
 
-    //TODO: control after jwt
     private Long getCurrentCustomerId() {
         Long currentCustomer = null;
         return currentCustomer;

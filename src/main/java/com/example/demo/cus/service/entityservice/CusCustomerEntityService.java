@@ -23,6 +23,9 @@ public class CusCustomerEntityService extends BaseEntityService<CusCustomer, Cus
     public CusCustomer findAllByName(String name){
         return getDao().findAllByName(name);
     }
+    public  CusCustomer findByNameOrPhoneOrEmail(String name,String phone,String email){
+        return getDao().findByNameOrPhoneOrEmail(name,phone,email);
+    }
     public  CusCustomer findByNameAndPhone(String name,String phone){
         return getDao().findByNameAndPhone(name,phone);
     }

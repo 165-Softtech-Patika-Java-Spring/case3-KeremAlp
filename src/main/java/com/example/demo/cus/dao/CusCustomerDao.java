@@ -13,6 +13,7 @@ CusCustomerDao extends JpaRepository<CusCustomer, Long> {
 
     List<CusCustomer> findAllBySurname(String surname);
    CusCustomer findAllByName(String name);
-   CusCustomer findByNameAndPhone(String name , String phone);
+   CusCustomer findByNameOrPhoneOrEmail(String name ,String phone,String email);
+   CusCustomer findByNameAndPhone(String name,String phone);
 
 }

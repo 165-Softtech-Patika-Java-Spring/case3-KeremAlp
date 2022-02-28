@@ -1,6 +1,6 @@
 package com.example.demo.cus.dto;
 
-import com.example.demo.gen.enums.GenStatusType;
+import com.example.demo.gen.enums.GenUserType;
 import lombok.Data;
 
 
@@ -13,5 +13,5 @@ public class CusCustomerSaveRequestDto {
     private String email;
     private String phone;
     private String password;
-    private GenStatusType statusType;
+    private GenUserType statusType;
 }
