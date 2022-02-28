@@ -1,4 +1,5 @@
 # Case3
+http://localhost:9001/swagger-ui/index.html adresinden giriş yaparak tüm özellikleri kontrol edebilirsiniz. Postgre kullandım klonlayacaklar ona göre kendi application.properties dosyasını güncelleyebilir. Manytoone bağladığım için yaptığı yorumu silmeden kullanıcı silinmiyor veya yorum yapılmış bir ürün silinmiyor. Yorum silindikten sonra siliniyorlar.
 
 Bir online alışveriş sitesinin kullanıcı yorumlarını yöneten bir api yazınız.
 - Bir kullanıcının sadece bir e-maili ve bir telefon numarası olabilir.
